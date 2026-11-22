@@ -1,0 +1,33 @@
+{% extends "blog/parent/base.html" %}
+
+{% block title %}اشتراک‌گذاری نوشته | دفتر نوشته‌ها{% endblock %}
+
+{% block content %}
+<section class="form-page">
+    <div class="form-card">
+        <div class="form-heading">
+            <span class="eyebrow">به اشتراک بگذارید</span>
+            <h1>ارسال نوشته برای دوستان</h1>
+            <p>نوشته «{{ post.title }}» را برای کسی که فکر می‌کنید از خواندنش لذت می‌برد بفرستید.</p>
+        </div>
+
+        {% if sent %}
+            <div class="success-message">نوشته «{{ post.title }}» با موفقیت ارسال شد.</div>
+        {% endif %}
+
+        <form method="post" class="site-form">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-field">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                </div>
+            {% endfor %}
+            {% for error in form.non_field_errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            <button class="button button-primary" type="submit">اشتراک‌گذاری نوشته</button>
+        </form>
+        <a class="back-link form-back-link" href="{% url 'blog:post_detail' post.slug post.id %}">بازگشت به نوشته</a>
+    </div>
+</section>
+{% endblock %}

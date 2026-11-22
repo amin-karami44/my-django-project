@@ -1,0 +1,80 @@
+{% extends "blog/parent/base.html" %}
+{% load static %}
+
+{% block title %}{{ post.title }} | دفتر نوشته‌ها{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="detail-layout">
+    <article class="article-card">
+        <a class="back-link" href="{% url 'blog:post_list' %}">→ بازگشت به نوشته‌ها</a>
+        <div class="article-heading">
+            <span class="eyebrow">یادداشت وبلاگ</span>
+            <h1>{{ post.title }}</h1>
+            <div class="article-meta">
+                <span>نویسنده: {{ post.author }}</span>
+                <span>{{ post.publish|date:"Y/m/d - H:i" }}</span>
+            </div>
+        </div>
+
+        <div class="article-body">
+            {{ post.body|linebreaks }}
+        </div>
+
+        {% if post.tags.all %}
+            <div class="article-tags">
+                <strong>برچسب‌ها:</strong>
+                {% for tag in post.tags.all %}
+                    <span class="tag-chip">{{ tag }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="article-actions">
+            <a class="button button-secondary" href="{% url 'blog:share_post' post.id %}">اشتراک‌گذاری این نوشته</a>
+        </div>
+    </article>
+
+    <section class="comments-card" aria-labelledby="comments-title">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">گفت‌وگو</span>
+                <h2 id="comments-title">دیدگاه‌ها</h2>
+            </div>
+            <span class="comment-count">{{ comments|length }} دیدگاه</span>
+        </div>
+
+        {% if new_comment %}
+            <div class="success-message">دیدگاه شما ثبت شد و پس از تأیید مدیر نمایش داده می‌شود.</div>
+        {% endif %}
+
+        <div class="comment-list">
+            {% for comment in comments %}
+                <article class="comment-item">
+                    <div class="comment-avatar" aria-hidden="true">{{ comment.name|first }}</div>
+                    <div class="comment-content">
+                        <div class="comment-meta">
+                            <strong>{{ comment.name }}</strong>
+                            <time>{{ comment.created|date:"Y/m/d" }}</time>
+                        </div>
+                        <div>{{ comment.body|linebreaks }}</div>
+                    </div>
+                </article>
+            {% empty %}
+                <p class="muted-message">هنوز دیدگاهی برای این نوشته ثبت نشده است. اولین نفر باشید.</p>
+            {% endfor %}
+        </div>
+
+        <div class="comment-form-wrap">
+            <h3>دیدگاه خود را بنویسید</h3>
+            <form method="post" class="site-form">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button class="button button-primary" type="submit">ثبت دیدگاه</button>
+            </form>
+        </div>
+    </section>
+</div>
+{% endblock %}

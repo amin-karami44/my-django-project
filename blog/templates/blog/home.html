@@ -1,0 +1,78 @@
+
+{% extends "blog/parent/base.html" %}
+{% load static %}
+
+{% block title %}صفحه اصلی | دفتر نوشته‌ها{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="page-intro">
+    <span class="eyebrow">به دفتر نوشته‌ها خوش آمدید</span>
+    <h1>جایی برای خواندن، یادگرفتن و تجربه کردن</h1>
+    <p>
+        در این وبلاگ، نوشته‌ها و تجربه‌هایی را به اشتراک می‌گذارم
+        که امیدوارم برای شما مفید و خواندنی باشند.
+    </p>
+</section>
+
+<section class="posts-section" aria-label="جدیدترین نوشته‌ها">
+
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">تازه‌ترین مطالب</span>
+            <h2>جدیدترین نوشته‌ها</h2>
+        </div>
+
+        <a class="read-more" href="{% url 'blog:post_list' %}">
+            مشاهده همه نوشته‌ها
+            <span aria-hidden="true">←</span>
+        </a>
+    </div>
+
+    {% if posts %}
+        <div class="post-grid">
+
+            {% for post in posts %}
+                <article class="post-card">
+
+                    <div class="post-card-topline">
+                        <span class="post-type">نوشته</span>
+                        <time>{{ post.publish|date:"Y/m/d" }}</time>
+                    </div>
+
+                    <a class="post-card-title" href="{{ post.get_absolute_url }}">
+                        <h2>{{ post.title }}</h2>
+                    </a>
+
+                    <p class="post-excerpt">
+                        {{ post.body|striptags|truncatewords:28 }}
+                    </p>
+
+                    <div class="post-card-meta">
+                        <span>نویسنده: {{ post.author }}</span>
+                    </div>
+
+                    <a class="read-more" href="{{ post.get_absolute_url }}">
+                        ادامه مطلب
+                        <span aria-hidden="true">←</span>
+                    </a>
+
+                </article>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <span class="empty-state-icon" aria-hidden="true">✎</span>
+            <h2>هنوز نوشته‌ای منتشر نشده است</h2>
+            <p>به‌زودی مطالب تازه‌ای در این بخش قرار می‌گیرد.</p>
+        </div>
+    {% endif %}
+
+</section>
+
+{% endblock %}

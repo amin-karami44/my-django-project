@@ -1,0 +1,33 @@
+{% extends "blog/parent/base.html" %}
+
+{% block title %}تماس با ما | دفتر نوشته‌ها{% endblock %}
+
+{% block content %}
+<section class="form-page">
+    <div class="form-card">
+        <div class="form-heading">
+            <span class="eyebrow">در تماس باشیم</span>
+            <h1>تماس با ما</h1>
+            <p>پیام، پیشنهاد یا انتقاد خود را از طریق فرم زیر ارسال کنید.</p>
+        </div>
+
+        {% if sent %}
+            <div class="success-message">پیام شما با موفقیت ارسال شد. سپاس از اینکه با ما در ارتباط هستید.</div>
+        {% endif %}
+
+        <form method="post" class="site-form">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-field">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}<small class="field-help">{{ field.help_text }}</small>{% endif %}
+                    {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                </div>
+            {% endfor %}
+            {% for error in form.non_field_errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            <button class="button button-primary" type="submit">ارسال پیام</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

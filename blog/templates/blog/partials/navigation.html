@@ -1,0 +1,27 @@
+
+<nav class="main-nav" aria-label="منوی اصلی">
+    <div class="container nav-inner">
+
+        <button
+            class="nav-toggle"
+            type="button"
+            aria-label="باز کردن منو"
+            aria-expanded="false"
+            aria-controls="nav-links">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+            <a class="nav-link" href="{% url 'blog:post_list' %}">نوشته‌ها</a>
+            <a class="nav-link" href="{% url 'blog:contact_us' %}">تماس با ما</a>
+            <a class="nav-link" href="{% url 'blog:account_form' %}">حساب کاربری</a>
+        </div>
+
+        <a class="nav-login" href="{% url 'login' %}">
+            ورود به حساب <span aria-hidden="true">←</span>
+        </a>
+
+    </div>
+</nav>

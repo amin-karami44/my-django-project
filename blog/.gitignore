@@ -1,0 +1,28 @@
+# Environment variables
+.env
+*/.env
+
+# Virtual environments
+myenv/
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Django
+*.log
+db.sqlite3
+media/
+
+# IDE
+.vscode/
+.idea/
+
+# Secret and local configuration files
+.env.*
+!.env.example
+
+# Django static collected files
+staticfiles/

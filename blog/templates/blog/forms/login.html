@@ -1,0 +1,33 @@
+{% extends "blog/parent/base.html" %}
+
+{% block title %}ورود به حساب | دفتر نوشته‌ها{% endblock %}
+
+{% block content %}
+<section class="form-page">
+    <div class="form-card form-card-narrow">
+        <div class="form-heading">
+            <span class="eyebrow">خوش برگشتید</span>
+            <h1>ورود به حساب کاربری</h1>
+            <p>برای ادامه، نام کاربری و رمز عبور خود را وارد کنید.</p>
+        </div>
+
+        {% if form.errors %}
+            <div class="error-message">نام کاربری یا رمز عبور صحیح نیست. دوباره تلاش کنید.</div>
+        {% endif %}
+
+        <form method="post" class="site-form">
+            {% csrf_token %}
+            <div class="form-field">
+                <label for="{{ form.username.id_for_label }}">نام کاربری</label>
+                {{ form.username }}
+            </div>
+            <div class="form-field">
+                <label for="{{ form.password.id_for_label }}">رمز عبور</label>
+                {{ form.password }}
+            </div>
+            <input type="hidden" name="next" value="{{ next }}">
+            <button class="button button-primary button-full" type="submit">ورود</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

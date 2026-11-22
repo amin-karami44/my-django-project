@@ -1,0 +1,20 @@
+<footer class="site-footer">
+    <div class="container footer-main">
+        <div class="footer-about">
+            <a class="footer-brand" href="{% url 'blog:post_list' %}">دفتر نوشته‌ها</a>
+            <p>جایی برای ثبت آموخته‌ها، تجربه‌ها و ایده‌هایی که ارزش به اشتراک گذاشتن دارند.</p>
+        </div>
+        <div class="footer-links">
+            <strong>دسترسی سریع</strong>
+            <a href="{% url 'blog:post_list' %}">نوشته‌ها</a>
+            <a href="{% url 'blog:contact_us' %}">تماس با ما</a>
+            <a href="{% url 'blog:account_form' %}">حساب کاربری</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+            <span>ساخته‌شده با Django</span>
+            <span>© تمامی حقوق برای صاحب این وبلاگ محفوظ است.</span>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,29 @@
+{% extends "blog/parent/base.html" %}
+
+{% block title %}اطلاعات شخصی | دفتر نوشته‌ها{% endblock %}
+
+{% block content %}
+<section class="form-page">
+    <div class="form-card">
+        <div class="form-heading">
+            <span class="eyebrow">حساب کاربری</span>
+            <h1>اطلاعات شخصی{% if account.user.first_name %}، {{ account.user.first_name }}{% endif %}</h1>
+            <p>اطلاعات خود را تکمیل یا ویرایش کنید.</p>
+        </div>
+
+        <form method="post" class="site-form">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-field{% if field.field.widget.input_type == 'radio' %} form-field-radio{% endif %}">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}<small class="field-help">{{ field.help_text }}</small>{% endif %}
+                    {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                </div>
+            {% endfor %}
+            {% for error in form.non_field_errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            <button class="button button-primary" type="submit">ذخیره اطلاعات</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

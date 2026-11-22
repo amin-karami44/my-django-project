@@ -1,0 +1,52 @@
+{% extends "blog/parent/base.html" %}
+{% load static %}
+
+{% block title %}نوشته‌ها | دفتر نوشته‌ها{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="page-intro">
+    <span class="eyebrow">کتابخانه نوشته‌ها</span>
+    <h1>چیزهایی برای خواندن و یادگرفتن</h1>
+    <p>یادداشت‌ها، تجربه‌ها و مطالبی که دوست دارم با شما به اشتراک بگذارم.</p>
+</section>
+
+<section class="posts-section" aria-label="فهرست نوشته‌ها">
+    {% if posts %}
+        <div class="post-grid">
+            {% for post in posts %}
+                <article class="post-card">
+                    <div class="post-card-topline">
+                        <span class="post-type">نوشته</span>
+                        <time datetime="{{ post.publish|date:'c' }}">{{ post.publish|date:"Y/m/d" }}</time>
+                    </div>
+                    <a class="post-card-title" href="{{ post.get_absolute_url }}">
+                        <h2>{{ post.title }}</h2>
+                    </a>
+                    <p class="post-excerpt">{{ post.body|striptags|truncatewords:28 }}</p>
+                    <div class="post-card-meta">
+                        <span>نویسنده: {{ post.author }}</span>
+                        {% if post.tags.all %}
+                            <div class="tag-list">
+                                {% for tag in post.tags.all %}
+                                    <span class="tag-chip">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <a class="read-more" href="{{ post.get_absolute_url }}">ادامه مطلب <span aria-hidden="true">←</span></a>
+                </article>
+            {% endfor %}
+        </div>
+        {% include 'blog/partials/pagination.html' with page=posts %}
+    {% else %}
+        <div class="empty-state">
+            <span class="empty-state-icon" aria-hidden="true">✎</span>
+            <h2>هنوز نوشته‌ای منتشر نشده است</h2>
+            <p>به‌زودی مطالب تازه‌ای در این بخش قرار می‌گیرد.</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,68 @@
+/* فهرست نوشته‌ها، کارت‌ها، صفحه جزئیات و دیدگاه‌ها */
+.page-intro { width: min(1120px, calc(100% - 40px)); margin: 0 auto 30px; padding: 28px 32px; border-radius: var(--radius); color: white; background: linear-gradient(115deg, #17365a, #245d83); box-shadow: 0 14px 32px rgba(16,35,63,.13); }
+.page-intro .eyebrow { color: #9ee1df; }
+.page-intro h1 { margin: 8px 0 4px; font-size: clamp(1.45rem, 3vw, 2.15rem); line-height: 1.5; }
+.page-intro p { margin: 0; color: #d1e0ed; font-size: .91rem; }
+.posts-section { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+.post-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.post-card { display: flex; flex-direction: column; min-width: 0; padding: 24px; border: 1px solid var(--line); border-radius: 17px; background: white; box-shadow: 0 8px 26px rgba(20,42,73,.045); transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+.post-card:hover { transform: translateY(-4px); border-color: #d1e0ef; box-shadow: 0 17px 35px rgba(20,42,73,.09); }
+.post-card-topline { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: #8793a4; font-size: .76rem; }
+.post-type { padding: 3px 10px; border-radius: 30px; color: #2869aa; background: #edf5fd; font-weight: 700; }
+.post-card-title { margin-top: 13px; color: var(--navy); }
+.post-card-title h2 { margin: 0; font-size: 1.18rem; line-height: 1.75; transition: color .2s ease; }
+.post-card-title:hover { color: var(--blue); }
+.post-excerpt { display: -webkit-box; overflow: hidden; margin: 10px 0 18px; color: var(--muted); font-size: .88rem; line-height: 2; -webkit-box-orient: vertical; -webkit-line-clamp : 3;line-clamp: 3; }
+.post-card-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 9px; margin-top: auto; padding-top: 13px; border-top: 1px solid #f0f2f6; color: #718096; font-size: .77rem; }
+.tag-list, .article-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-chip { display: inline-flex; padding: 2px 9px; border-radius: 30px; color: #526780; background: #f0f4f8; font-size: .72rem; }
+.read-more { display: inline-flex; align-items: center; gap: 7px; align-self: flex-start; margin-top: 15px; color: var(--blue-dark); font-size: .84rem; font-weight: 700; }
+.read-more span { transition: transform .2s ease; }
+.read-more:hover span { transform: translateX(-4px); }
+.empty-state { padding: 56px 20px; border: 1px dashed #cbd7e5; border-radius: 17px; background: rgba(255,255,255,.7); text-align: center; }
+.empty-state-icon { display: inline-grid; place-items: center; width: 54px; height: 54px; border-radius: 16px; color: var(--blue); background: #eaf3fc; font-size: 1.5rem; }
+.empty-state h2 { margin: 12px 0 3px; font-size: 1.15rem; }
+.empty-state p { margin: 0; color: var(--muted); }
+
+.pagination { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.page-numbers { display: flex; gap: 6px; }
+.page-number, .page-arrow { display: inline-grid; place-items: center; min-width: 38px; height: 38px; padding-inline: 10px; border: 1px solid var(--line); border-radius: 10px; color: #53647b; background: white; font-size: .82rem; }
+.page-number:hover, .page-arrow:not(.is-disabled):hover { color: var(--blue-dark); border-color: #b8d2ed; background: #f4f8fd; }
+.page-number.is-current { color: white; border-color: var(--blue); background: var(--blue); }
+.page-arrow.is-disabled { color: #aeb8c5; background: #f4f6f9; }
+
+.detail-layout { width: min(900px, calc(100% - 40px)); margin-inline: auto; display: grid; gap: 22px; }
+.article-card, .comments-card { padding: clamp(22px, 4vw, 38px); border: 1px solid var(--line); border-radius: var(--radius); background: white; box-shadow: var(--shadow); }
+.article-heading { padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.article-heading h1 { margin: 8px 0 12px; color: var(--navy); font-size: clamp(1.5rem, 3.4vw, 2.2rem); line-height: 1.55; }
+.article-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; color: var(--muted); font-size: .82rem; }
+.article-body { padding-block: 22px; color: #35445a; font-size: .98rem; line-height: 2.35; overflow-wrap: anywhere; }
+.article-body p { margin: 0 0 18px; }
+.article-tags { align-items: center; padding-top: 17px; border-top: 1px solid #f0f2f6; }
+.article-tags strong { color: #53647b; font-size: .82rem; }
+.article-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 23px; }
+
+.section-heading { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 20px; }
+.section-heading h2 { margin: 5px 0 0; color: var(--navy); font-size: 1.35rem; }
+.comment-count { padding: 5px 12px; border-radius: 30px; color: #536b85; background: #f0f4f8; font-size: .78rem; white-space: nowrap; }
+.comment-list { display: grid; gap: 16px; }
+.comment-item { display: flex; align-items: flex-start; gap: 13px; padding: 16px; border: 1px solid #edf0f5; border-radius: 14px; background: #fcfdff; }
+.comment-avatar { display: grid; place-items: center; width: 38px; height: 38px; flex: 0 0 38px; border-radius: 12px; color: #2869aa; background: #eaf3fc; font-weight: 800; }
+.comment-content { min-width: 0; flex: 1; color: #526176; font-size: .88rem; overflow-wrap: anywhere; }
+.comment-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-bottom: 5px; color: var(--navy); }
+.comment-meta time { color: #8a96a6; font-size: .74rem; }
+.comment-content p { margin: 0; }
+.comment-form-wrap { margin-top: 28px; padding-top: 25px; border-top: 1px solid var(--line); }
+.comment-form-wrap h3 { margin: 0 0 15px; color: var(--navy); font-size: 1.05rem; }
+.comment-form-wrap .site-form { gap: 14px; }
+
+@media (max-width: 760px) {
+    .post-grid { grid-template-columns: 1fr; }
+    .page-intro { padding: 24px; }
+}
+@media (max-width: 560px) {
+    .page-intro, .posts-section, .detail-layout { width: calc(100% - 28px); }
+    .post-card { padding: 19px; }
+    .article-meta { flex-direction: column; gap: 3px; }
+    .comment-item { padding: 12px; }
+}

@@ -23,15 +23,7 @@ class AccountForm(forms.Form):
 
         return phone
 
-   
-            
-    def clean_age(self):
-        age=self.cleaned_data['age']
-        if age<0:
-            raise forms.ValidationError(" عدد سن نباید منفی باشد ")
-        else:
-            return age
-        
+
 
 class ContactusForm(forms.Form):
 

@@ -169,7 +169,7 @@ def SharePost(request,post_id):
             message=cd['message']
             msg='{5}{4}{3}{2} در آدرس زیر دعوت کرده است {1} شما را به خواندن پست {0}'\
                 .format(cd['name'],post.title,'\n',message,'\n',post_url)
-            send_mail(subject, msg,'amin00karmi11@gmail.com',[cd['to']],fail_silently=False)
+            send_mail(subject, msg,settings.DEFAULT_FROM_EMAIL,[cd['to']],fail_silently=False)
             sent=True
     else:
         form=ShareForm()
